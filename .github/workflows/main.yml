@@ -1,45 +1,22 @@
-name: my first workflow
+name: Auto Comment on issue
 
 on:
-  - workflow_dispatch
+  issues:
+    types: [opened]
 
 jobs:
-  build:
-    runs-on: [self-hosted, onprem]
-
+  comment:
+    runs-on: ubuntu-latest
+  
     steps:
-      - name: Checkout Code 
-        uses: actions/checkout@v3
-      - name: Set up .net # setting up .net
-        uses: actions/setup-dotnet@v3
+      - name: Add comment to new issues
+        uses: actions/github-script@v8
         with:
-          dotnet-version: 7.0
-      - name: Restore Dependencies
-        run: dotnet restore
-
-      - name: Restore Dependencies
-        run: dotnet build
-      
-      - name: Publish artifact
-        run: dotnet publish 
-
-      - name: List all files
-        run: ls /home/runner/work/Demoappaz204/Demoappaz204/Demoappaz204/bin/Release/net8.0/publish/
-        
-      - name: Upload artifact
-        uses: actions/upload-artifact@v6.0.0
-        with:
-          name: app-files
-          path: /home/runner/work/Demoappaz204/Demoappaz204/Demoappaz204/bin/Release/net8.0/publish/
-
-      - name: Login to Azure
-        uses: Azure/login@v2.3.0
-        with:
-          creds: ${{secrets.AZURE_CREDENTIALS}}
-
-      - name: Deploy to Azure web app
-        uses: Azure/webapps-deploy@v3.0.5
-        with:
-          app-name: mynewwebapp2307
-          package: /home/runner/work/Demoappaz204/Demoappaz204/Demoappaz204/bin/Release/net8.0/publish/
-        
+          script: |
+            github.rest.issues.createComment
+            ({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thank you for opening this issue!🚀 We will look into it as soon as possible✨.'
+            });
