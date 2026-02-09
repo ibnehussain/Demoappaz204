@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v6.0.0
         with:
           name: nupkg
-          path: ./nupkg/*.nupkg
+          path: ./nupkg/
       
 
   deploy:
@@ -38,7 +38,7 @@ jobs:
         uses: actions/download-artifact@v7.0.0
         with:
           name: nupkg
-          path: ./nupkg/*.nupkg
+          path: ./nupkg/
       
       - name: Azure Login
         uses: Azure/login@v2.3.0
