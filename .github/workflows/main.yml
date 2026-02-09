@@ -8,12 +8,17 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo "Hello World!" #Directly run a command
-        
+
       - name: List all files in the current directory
         run: ls -al
 
       - name: Checkout code
         uses: actions/checkout@v6.0.2
+
+      - name: setup SDK Azhar
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
       
       - name: List all files in the repository
         run: ls -al
