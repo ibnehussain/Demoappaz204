@@ -23,8 +23,8 @@ jobs:
       - name: Build
         run: dotnet build
 
-      - name: Pack
-        run: dotnet pack --output ./nupkg
+      - name: Publish to zip
+        run: dotnet publish --output ./nupkg
       
       - name: Upload artifact
         uses: actions/upload-artifact@v6.0.0
