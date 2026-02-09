@@ -11,6 +11,8 @@ jobs:
         # use run to execute shell commands directly on the runner
       - run: cat demo.txt
 # add default github variables like GITHUB_REPOSITORY, GITHUB_SHA, GITHUB_REF etc.
+# Default environment variables provided by GitHub Actions can be accessed using the github context
+
       - name: Show GitHub Context 
         run: |
           echo "Repository: ${{ github.repository }}"
