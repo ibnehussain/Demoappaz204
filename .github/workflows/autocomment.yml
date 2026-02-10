@@ -7,6 +7,10 @@ on:
 jobs:
   comment:
     runs-on: ubuntu-latest
+    
+    permissions:
+      issues: write
+      
     steps:
         - name: Comment on issue
           uses: actions/github-script@v8
