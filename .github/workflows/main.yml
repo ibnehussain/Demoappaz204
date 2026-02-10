@@ -13,16 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6.0.2
  
-      - name: setup SDK Azhar
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
+      - name: Run Composite action]
+        uses: ./.github/actions/dotnet-build
  
-      - name: Restore dependencies
-        run: dotnet restore
- 
-      - name: Build
-        run: dotnet build
- 
+
 
 
