@@ -3,8 +3,8 @@ name: Demo Pipeline
 on:
   push:
     branches:
-      - master
-
+      - main #Wrong branch name, should be 'master' instead of 'manin'
+  
 jobs:
   build:
     runs-on: ubuntu-latest
