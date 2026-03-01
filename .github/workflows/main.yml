@@ -11,11 +11,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6.0.2
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
       - name: Azhar Restore
         run: dotnet restore
         
       - name: Azhar Build
         run: dotnet build
+
+      - name: Azhar Publish
+        run: dotnet publish -o publish_output #temp value
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v7.0.0
