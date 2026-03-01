@@ -42,6 +42,7 @@ jobs:
         uses: actions/download-artifact@v8.0.0
         with:
           name: demo.zip
+          path: .
        
       - name: Azure login
         uses: Azure/login@v2.3.0
