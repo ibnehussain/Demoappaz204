@@ -1,0 +1,19 @@
+name: CI test
+
+on:
+  push: 
+    branches: master
+
+jobs:
+  testjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+
+      - name: Azhar Restore
+        run: dotnet restore
+        
+      - name: Azhar Build
+        run: dotnet build
+        
