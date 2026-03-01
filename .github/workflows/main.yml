@@ -43,6 +43,9 @@ jobs:
         with:
           name: demo.zip
           path: .
+
+      - name: List files
+        run: ls -la
        
       - name: Azure login
         uses: Azure/login@v2.3.0
