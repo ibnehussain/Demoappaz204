@@ -1,0 +1,16 @@
+#workflow to give a thank messgae whenever a issue is opened in the repository
+name: Thank you message for new issues
+on:
+  issues:
+    types: [opened]
+jobs:
+  thank-you-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send thank you message
+        uses: actions/github-script@v6.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueComment = context.issue({ body: 'Thank you for opening this issue! We will look into it as soon as possible.' });
+            await github.issues.createComment(issueComment);
